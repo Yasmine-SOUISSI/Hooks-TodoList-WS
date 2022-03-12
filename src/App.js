@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React, { useState } from "react";
+import Add from "./Components/Todo/Add";
+import List from "./Components/Todo/List";
+import Counter from "./Components/Counter";
+const App = () => {
+    const [list, setList] = useState(["item1", "item2"]);
+    const addItem = (item) => {
+        //Concatination tab bch nzidou el jdid eli howa el item
+        //[item1,item2,input]
+        // setList(list.contact(item)););
+        setList([...list, item]);
+    };
+    console.log(list);
+    const deleteItem = (index) => {
+        setList(list.filter((_, i) => i !== index));
+    };
+    return (
+        <div>
+            <Add addItem={addItem} />
+            <List list={list} deleteItem={deleteItem} />
+         
+        </div>
+    );
+};
 
 export default App;
